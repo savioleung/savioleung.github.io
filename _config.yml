@@ -19,12 +19,12 @@ defaults:
 description: Stylish Jekyll Theme
 author:
   name: Leung YiHo (リィァンイーホウ)
-  email: dbyll@ismaildemirbilek.com
-  github: dbtek
-  twitter: dbtek
-  pinterest: asd123
-  linkedin: asd123
-  bio: Your stylish, minimalist theme!
+  email: leungyiho971028@gmail.com
+  github: savioleung
+  twitter: savioleung
+  pinterest: savioleung
+  linkedin: savioleung
+  bio: リィァンイーホウのプロフィール
   email_md5: 726351295ec82e145928582f595aa3aa
 
 rss_path: feed.xml
