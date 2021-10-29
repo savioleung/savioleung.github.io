@@ -7,7 +7,8 @@ highlighter: rouge
 markdown: kramdown
 disqus: Leung YiHo (リィァンイーホウ)
 google_analytics: Leung YiHo (リィァンイーホウ)
-title: Leung YiHo (リィァンイーホウ)
+title: Leung YiHo
+(リィァンイーホウ)
 
 defaults:
   -
@@ -27,7 +28,9 @@ author:
   bio: リィァンイーホウのプロフィール
   email_md5: 726351295ec82e145928582f595aa3aa
 
-
+rss_path: feed.xml
+categories_path: categories.html
+tags_path: tags.html
 
 # set it as url of an image
 # sidebar_background_image: https://www.dropbox.com/s/g9h23zrycedxtk5/sky.png?raw=1
