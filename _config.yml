@@ -5,9 +5,9 @@ paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 highlighter: rouge
 markdown: kramdown
-disqus: dbyll
-google_analytics: dbyll
-title: dbyll
+disqus: Leung YiHo (リィァンイーホウ)
+google_analytics: Leung YiHo (リィァンイーホウ)
+title: Leung YiHo (リィァンイーホウ)
 
 defaults:
   -
@@ -16,7 +16,7 @@ defaults:
     values:
       title: Leung YiHo (リィァンイーホウ)
 
-description: Stylish Jekyll Theme
+description: Leung YiHo (リィァンイーホウ)
 author:
   name: Leung YiHo (リィァンイーホウ)
   email: leungyiho971028@gmail.com
