@@ -5,8 +5,8 @@ paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 highlighter: rouge
 markdown: kramdown
-disqus: Leung YiHo (リィァンイーホウ)
-google_analytics: Leung YiHo (リィァンイーホウ)
+disqus: Leung YiHo (リィアンイーホウ)
+google_analytics: Leung YiHo (リィアンイーホウ)
 title: Leung YiHo
 
 defaults:
@@ -14,11 +14,11 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: Leung YiHo (リィァンイーホウ)
+      title: Leung YiHo  (リィアンイーホウ)のポートフォリオ
 
-description: Leung YiHo (リィァンイーホウ)
+description: Leung YiHo  (リィアンイーホウ)のポートフォリオ
 author:
-  name: Leung YiHo (リィァンイーホウ)
+  name: Leung YiHo (リィアンイーホウ)
   email: leungyiho971028@gmail.com
   github: savioleung
   twitter: 
