@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [C#,Unity] Number Battle Royale
+title: Number Battle Royale(C#,Unity)
 categories: [C#, Unity]
 tags: [demo, dbyll, dbtek, setup]
 ---
