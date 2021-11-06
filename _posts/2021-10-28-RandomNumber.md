@@ -3,7 +3,6 @@ layout: post
 title: [C#,Unity] Number Battle Royale
 categories: [C#, Unity]
 tags: [demo, dbyll, dbtek, setup]
-fullview: true
 ---
 
 タイトル：Number Battle Royale
