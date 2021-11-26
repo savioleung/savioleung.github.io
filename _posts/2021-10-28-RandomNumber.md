@@ -13,7 +13,7 @@ tags: [demo, dbyll, dbtek, setup]
 
 コンセプト：「最強」の数字を出す乱数ジェネレーター
 
-Github:[goalf](https://github.com/savioleung/goalf)
+Github:[Number Battle Royale](https://github.com/savioleung/nbr)
 
 動画：
 
