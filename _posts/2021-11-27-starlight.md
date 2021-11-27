@@ -20,7 +20,6 @@ Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
 説明：
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_2.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_3.png)<br>
-![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_4.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_5.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_6.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_7.png)<br>
