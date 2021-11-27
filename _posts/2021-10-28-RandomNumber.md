@@ -2,7 +2,7 @@
 layout: post
 title: Number Battle Royale[C#,Unity]
 categories: [C#, Unity]
-tags: [demo, dbyll, dbtek, setup]
+description: ! 「最強」の数値を出すランダムナンバージェネレーター
 ---
 
 タイトル：Number Battle Royale
