@@ -35,7 +35,7 @@ Github:[Number Battle Royale](https://github.com/savioleung/nbr)
 全部ランダムに生成し、戦わせる。
 
 <details>
-    <summary>↓ボールをランダムに生成する</summary>
+    <summary>＋ボールをランダムに生成するプログラム</summary>
     {% highlight csharp %}
 //ボールを生成
 public void randomm()
@@ -59,9 +59,8 @@ public void randomm()
 </details>
 
 
-
-最初に一番近いボールをターゲットにして、相手が消えてから、別のボールをターゲットにします。
-
+<details>
+    <summary>＋最初に一番近いボールをターゲットにして、相手が消えてから、別のボールをターゲットにするプログラム。</summary>
 {% highlight csharp %}
 	//移動
 	void FindingBall()
@@ -122,7 +121,7 @@ public void randomm()
 
 	}
 {% endhighlight %}
-
+</details>
 戦う法則は簡単にHP=HP-(ATK-DEF)、だが最低でも1ダメージは食らいます。
 
 戦い抜いた最後のボールが一番「強い」数字になる。
@@ -139,8 +138,10 @@ public void randomm()
 
 逆にもし攻撃速度が速いボールを軽戦士とみなし、攻撃するたび、攻撃が速いなっていきます
 
+</details>
+<details>
+    <summary>＋ステイタスを設定するプログラム</summary>
 
-↓ステイタスを設定する
 {% highlight csharp %}
 void Awake()
 	{
@@ -184,8 +185,12 @@ void Awake()
 		}
 	}
 {% endhighlight %}
+</details>
 
-↓攻撃を受けるプログラム
+</details>
+<details>
+    <summary>＋攻撃を受けるプログラム</summary>
+
 {% highlight csharp %}
 	//HP計算
 	void OnTriggerEnter2D(Collider2D other){
@@ -201,5 +206,4 @@ void Awake()
 		}
 	}
 {% endhighlight %}
-
-
+</details>
