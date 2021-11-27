@@ -23,7 +23,7 @@ Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_4.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_5.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_6.png)<br>
-![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/Starlighter_7.png)<br>
+![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_7.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_8.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_9.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_10.png)<br>
@@ -39,7 +39,7 @@ Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_20.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_21.png)<br>
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_22.png)<br>
-![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/Starlighter/starlighter_23.png)<br>
+![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_23.png)<br>
 
 
 <details>
