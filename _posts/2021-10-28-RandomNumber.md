@@ -34,9 +34,9 @@ Github:[Number Battle Royale](https://github.com/savioleung/nbr)
 
 全部ランダムに生成し、戦わせる。
 
-
-↓ボールをランダムに生成する
-{% highlight csharp %}
+<details>
+    <summary>↓ボールをランダムに生成する</summary>
+    {% highlight csharp %}
 //ボールを生成
 public void randomm()
 {
@@ -56,6 +56,10 @@ public void randomm()
 	b2.SetActive(true);
 }
 {% endhighlight %}
+</details>
+
+
+
 最初に一番近いボールをターゲットにして、相手が消えてから、別のボールをターゲットにします。
 
 {% highlight csharp %}
