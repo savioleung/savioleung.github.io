@@ -138,7 +138,6 @@ public void randomm()
 
 逆にもし攻撃速度が速いボールを軽戦士とみなし、攻撃するたび、攻撃が速いなっていきます
 
-</details>
 <details>
     <summary>＋ステイタスを設定するプログラム</summary>
 
@@ -187,7 +186,6 @@ void Awake()
 {% endhighlight %}
 </details>
 
-</details>
 <details>
     <summary>＋攻撃を受けるプログラム</summary>
 
