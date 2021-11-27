@@ -3,13 +3,13 @@ layout: post
 title: Starlighter[C#,Unity][更新中]
 categories: [C#,Unity]
 tags: []
-description: !オールレンジ攻撃体感シューティングアクション
+description: ! オールレンジ攻撃体感シューティングアクション
 ---
 タイトル：Starlighter
 
 制作期間:2020/7~2020/9 約50時間
 
-コンセプト：!オールレンジ攻撃シューティングアクション
+コンセプト：オールレンジ攻撃シューティングアクション
 
 Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
 
