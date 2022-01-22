@@ -230,6 +230,196 @@ Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
 
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_19.png)<br>
 
+<details>
+<summary>＋スキルのプログラマ</summary>
+{% highlight csharp %}
+    
+ #region スロット変更
+        var key = Input.inputString;
+        switch (key)
+        {
+            case "1":
+                skill = 1;
+                break;
+            case "2":
+                skill = 2;
+                break;
+            case "3":
+                skill = 3;
+
+                for (int i = 0; i < 4; i++)
+                {
+                    multiBit[i].transform.localPosition = new Vector3(-0.9f + 0.6f * i, -0.1f, 0);
+                }
+                break;
+            case "4":
+                multiBit[0].transform.localPosition = new Vector3(-0.6f, 1f);
+                multiBit[1].transform.localPosition = new Vector3(-0.6f, -1f);
+                multiBit[2].transform.localPosition = new Vector3(0.6f, -1f);
+                multiBit[3].transform.localPosition = new Vector3(0.6f, 1f);
+                skill = 4;
+                break;
+            default:
+                break;
+        }
+        skillSlotSelect(skill);
+        #endregion
+
+        //銃
+        if (Input.GetMouseButtonDown(0) && skill == 1)
+        {
+            GameObject laser = Instantiate(Beamlaser, handGunBit.transform.position, Quaternion.identity);
+            // クリックした座標の取得（スクリーン座標からワールド座標に変換）
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // 向きの生成（Z成分の除去と正規化）
+            Vector3 shotForward = Vector3.Scale((mouseWorldPos - transform.position), new Vector3(1, 1, 0)).normalized;
+
+            // 弾に速度を与える
+            laser.GetComponent<Rigidbody2D>().velocity = shotForward * gunLaserSpeed;
+
+            Destroy(laser, 1);
+        }
+        //ビット発射
+        if (Input.GetMouseButtonDown(1) && bitCount > 0 && skill == 2)
+        {
+            GameObject cloneBit = Instantiate(gunBit, bitSpwan.position, Quaternion.identity);
+            bitCount--;
+        }
+        //足場/シールド
+        if (skill == 3 || skill == 4)
+        {
+            skill34(skill);
+        }
+        else { steper.SetActive(false); }
+
+        bitText.text = bitCount+"";
+        maxBitText.text=bitMaxCount+"";
+    }
+
+
+
+
+{% endhighlight %}
+</details>
+
+<details>
+<summary>＋シールドと足場の目的地に到着チェックのプログラマ</summary>
+{% highlight csharp %}
+    private void skill34(int s)
+    {
+        Vector2 aimSpot = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        steper.SetActive(true);
+        steper.transform.position = aimSpot;
+
+        if (Input.GetMouseButtonDown(0) && bitCount >= 4)
+        {
+            //ビットー4
+            bitCount -= 4;
+            //ビットをすべてリストから排除する
+            bitList.Clear();
+            for (int i = 0; i < 4; i++)
+            {
+                cloneBit2[i] = Instantiate(gunBit, bitSpwan.position, Quaternion.identity);
+                cloneBit2[i].GetComponent<BitController>().vec = multiBit[i].transform.position;
+                cloneBit2[i].GetComponent<BitController>().canShoot = false;
+                //一段ビットをリストに入れる
+                bitList.Add(cloneBit2[i]);
+            }
+            //狙い先の場所でオブジェを生成
+            GameObject targetObj = Instantiate(floorEff, aimSpot, Quaternion.identity) as GameObject;
+
+        }
+    }
+{% endhighlight %}
+</details>
+
+
+<details>
+<summary>＋シールドと足場のエフェクト管理のプログラマ</summary>
+{% highlight csharp %}
+ 
+    private void Start()
+    {   
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        skillNum = player.skill;
+        //呼び出された時のプレイヤーのスキルに応じてエフェクト生成
+        if (skillNum == 3)
+        {
+            effObj = floorEff.gameObject ;
+           }
+        else if (skillNum == 4)
+        {
+            effObj = shieldEff;
+        }
+        eff = Instantiate(effObj, this.transform.position, Quaternion.identity) as GameObject;
+        //そのエフェクトを子オブジェクトにする
+        eff.transform.parent = this.transform;
+        //存在を一時的消す
+        eff.SetActive(false);
+    }
+    private void Update()
+    {
+        //生成時に自分に使うビットをリストに入る
+        if (useingBit.Count == 0 && stage == 0)
+        {
+            foreach (GameObject i in player.bitList)
+            {
+                useingBit.Add(i);
+            }
+            stage++;
+        }
+        //ビット全部リストに入ったらこのステージに入る
+        if (stage == 1)
+        {
+            //ビット全部目的地に到達したらエフェクト始動
+            skiller(useingBit);
+        }
+        //エフェクト始動して、プレイヤーがエフェクトのスキルを選んでいる場合、マウス右クリックでビット回収
+        if (Input.GetMouseButtonDown(1)&&stage==2&&player.skill==skillNum)
+        {
+            bitReturn(useingBit);
+            Destroy(this.gameObject);
+        }
+        
+    }
+    //スキル使用
+    public void skiller(List<GameObject> cloneBit)
+    {
+        //ビット何個目的地に到達したかチェック
+        int pointCheck = 0;
+        //ビットがいる場合
+        if (cloneBit != null)
+        {
+            for (int i = 0; i < cloneBit.Count; i++)
+            {   //目的地に到達したかチェック
+                if (cloneBit[i].GetComponent<BitController>().onTarget)
+                {
+                    pointCheck++;
+
+                }
+            }
+        }
+        //ビットが全部到達したらエフェクト始動
+        if (pointCheck == 4) {
+            eff.SetActive(true);
+            stage = 2;
+        }
+    }
+    //ビット回収
+    void bitReturn(List<GameObject> cloneBit)
+    {
+        eff.SetActive(false);
+        for (int i = 0; i < cloneBit.Count; i++)
+        {
+            cloneBit[i].GetComponent<BitController>().afterUse = true;
+
+        }
+    }
+{% endhighlight %}
+</details>
+
+
 敵です
 
 敵はプレイヤーが近くに行くと起動します
@@ -352,4 +542,10 @@ Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
         rb.AddForce(new Vector2(hitForward.x, hitForward.y>0? hitForward.y*-1  : hitForward.y)*400*-1, ForceMode2D.Force);
     }
 {% endhighlight %}
+</details>
+
+
+<details>
+    <summary>制作した感想</summary>
+人が遊べるには早すぎた、色々と、カメラとか、戦闘の流れとか、時代とか
 </details>
