@@ -14,6 +14,7 @@ description: ! オールレンジ攻撃体感シューティングアクショ�
 Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
 
 動画：
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XR9hMZEjMHo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_1.png)
 
