@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Starlighter[C#,Unity][更新中]
+title: Starlighter[C#,Unity]
 categories: [C#,Unity]
 tags: []
 description: ! オールレンジ攻撃体感シューティングアクション
