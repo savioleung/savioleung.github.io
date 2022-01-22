@@ -64,6 +64,109 @@ Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
 
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_7.png)<br>
 
+<details>
+    <summary>＋ビットのプログラマ</summary>
+    {% highlight csharp %}
+    private void Start()
+    {
+        //プレイヤーを探す
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        //バックパックを探す       
+        bitBag = GameObject.Find("bitBag");
+        //プレイヤーがスキル「ビット」を選んでいる場合
+        if (player.skill == 2)
+        {   //目的地をクリックした座標に、ビームが撃てるように
+            vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            this.canShoot = true;
+        }
+        else
+        {//「ビット」以外の場合、打たない
+            this.canShoot = false;
+            
+        }
+        //初期化
+        this.afterUse = false;
+        this.onTarget = false;
+        upMoveTime = 2.0f;
+        rotPow = 5.0f;
+
+    }
+    void Update()
+    {
+        //ビットを常に回転する
+        rotateBit();
+        //目的地チェック
+        if(this.transform.position.x==vec.x&& this.transform.position.y == vec.y)
+        {
+            onTarget = true;
+        }
+        //プレイヤーがビットを選んでいる場合にマウスクリックで射撃
+        if (player.skill == 2)
+        {
+            ShootBeam();
+        }
+        //使い終わったらバックパックに戻る
+        if (afterUse)
+        {
+            vec = bitBag.transform.position;
+
+        }
+        //移動
+        transform.position = Vector2.MoveTowards(transform.position, new Vector2(vec.x, vec.y), bitSpeed * Time.deltaTime);
+
+    }
+    //射出したビットを回転する動きをつける
+     void rotateBit()
+    {
+        if (upMoveTime > 1)
+        {
+            upMoveTime *= 0.98f;
+            transform.Translate(0, 0.1f, 0);
+        }
+        transform.Rotate(0, 0, rotPow);
+    }
+    //射撃処理
+    void ShootBeam()
+    {
+        //マウスクリック
+        if (Input.GetMouseButtonDown(0) && canShoot)
+        {
+            GameObject laser = Instantiate(Beam, transform.position, Quaternion.identity);
+            // クリックした座標の取得（スクリーン座標からワールド座標に変換）
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // 向きの生成（Z成分の除去と正規化）
+            Vector3 shotForward = Vector3.Scale((mouseWorldPos - transform.position), new Vector3(1, 1, 0)).normalized;
+
+            // 弾に速度を与える
+            laser.GetComponent<Rigidbody2D>().velocity = shotForward * laserSpeed;
+
+            Destroy(laser, 2);
+        }//撃ったら戻る処理
+        if (Input.GetMouseButtonUp(0) && canShoot)
+        {
+            canShoot = false;
+            upMoveTime = 2.0f;
+            afterUse = true;
+        }
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        //戻っていく時、バックパックに触れて初めてチャージする
+        if (collision.gameObject == bitBag && afterUse)
+        {
+            //3秒チャージして、使用可能になる
+            player.invokeFunc("chargeBit", 3);
+            Destroy(gameObject);
+        }
+    }
+{% endhighlight %}
+</details>
+
+
+
 ３は足場、３を選んだ状態になったら、マウス位置に足場の配置予定地が表示
 
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_8.png)<br>
@@ -129,7 +232,9 @@ Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
 
 敵です
 
-敵はジャンプしながらビーム撃ってくる
+敵はプレイヤーが近くに行くと起動します
+
+敵はジャンプしながらビーム撃ってくる、敵がプレイヤーのビームを受けたらノックバックが発生してダメージ処理する。
 
 ![Starlighter](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/starlighter/starlighter_20.png)<br>
 
@@ -147,10 +252,104 @@ Github:[Starlighter](https://github.com/savioleung/Starlighter_Project)
 
 もしくは通り抜けての一瞬でも撃つ機会があります（厳しい）
 
-<details>
-    <summary>＋</summary>
-    {% highlight csharp %}
 
+<details>
+    <summary>＋敵のプログラマ</summary>
+    {% highlight csharp %}
+ virtual protected void Start()
+    {
+        //プレイヤー
+        player = player = GameObject.FindGameObjectWithTag("Player");
+        rb = GetComponent<Rigidbody2D>();
+        //弱点の位置初期化
+        weakPoint.transform.position = weakPointPos.transform.position;
+        //弱点露出まで弱点を消す
+        weakPoint.gameObject.SetActive(false);
+
+    }
+
+    // Update is called once per frame
+    virtual protected void Update()
+    {
+        //プレイヤーとの距離
+        var dis = Vector3.Distance(player.transform.position, this.transform.position);
+        //プレイヤーが距離内で始動
+        if (dis < r && !move)
+        {
+            move = true;
+        }
+        if (move)
+        {
+            t += Time.deltaTime;
+            //タイムごとに動く
+            if (t >= reloadTime)
+            {
+                GameObject laser = Instantiate(beamLaser, shootPos.transform.position, Quaternion.identity);
+                // プレイヤーの座標
+                Vector3 targetPos = player.transform.position;
+
+                // 向きの生成
+                Vector3 shotForward = Vector3.Scale((targetPos - transform.position), new Vector3(1, 1, 0)).normalized;
+
+                // 弾に速度を与える
+                laser.GetComponent<Rigidbody2D>().velocity = shotForward * laserSpeed;
+
+                turn();
+                movement();
+
+                Destroy(laser, goneTime);
+                t = 0;
+
+            }
+            //弱点露出処理
+            if (HP <= 0)
+            {
+                if (!breakable)
+                {
+                    weakPoint.gameObject.SetActive(true);
+                    if (weakPoint.GetComponent<weakPoint>().isDeath)
+                    {
+                        Destroy(this.gameObject);
+                    }
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                }
+            }
+        }
+    }
+    void turn()
+    {
+        if (player.transform.position.x > transform.position.x)
+        {
+            this.transform.localScale = new Vector3(1.35f, this.transform.localScale.y, this.transform.localScale.z);
+            h = 1;
+        }
+        else
+        {
+            this.transform.localScale = new Vector3(-1.35f, this.transform.localScale.y, this.transform.localScale.z);
+            h = -1;
+        }
+    }
+    void movement()
+    {
+        //ジャンプ処理
+        if (onGround)
+        {
+            onGround = false;
+            rb.AddForce(new Vector2(Random.Range(0.4f, 1.2f) * h, Random.Range(0.4f, 1.2f)) * jumpSpeed, ForceMode2D.Force);
+        }
+    }
+
+    virtual protected void knockBack(GameObject g)
+    {
+        Vector3 hitPos = g.transform.position;
+
+        // 向きの生成
+        Vector3 hitForward = Vector3.Scale((hitPos - transform.position), new Vector3(1, 1, 0)).normalized;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(new Vector2(hitForward.x, hitForward.y>0? hitForward.y*-1  : hitForward.y)*400*-1, ForceMode2D.Force);
+    }
 {% endhighlight %}
 </details>
-
