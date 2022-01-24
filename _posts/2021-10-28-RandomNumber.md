@@ -17,6 +17,8 @@ Github:[Number Battle Royale](https://github.com/savioleung/nbr)
 
 動画：
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aA_-_8ZVJHo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ![random1](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/randomNum/random_1.png)
 
 ![random2](https://raw.githubusercontent.com/savioleung/savioleung.github.io/master/images/randomNum/random_2.png)
