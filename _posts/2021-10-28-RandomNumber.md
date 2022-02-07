@@ -17,6 +17,8 @@ description: ! 「最強」の数値を出すランダムナンバージェネ�
 
 Github:[Number Battle Royale](https://github.com/savioleung/nbr)
 
+実行ファイル：[Google Drive](https://drive.google.com/drive/folders/16K7bs7GpQcm6eSg0TlOBD9QzMXFKWnDu?usp=sharing)
+
 動画：
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/aA_-_8ZVJHo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
